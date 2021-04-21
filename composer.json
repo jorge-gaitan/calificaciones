@@ -1,0 +1,14 @@
+{
+    "name": "jorge-gaitan/calificaciones",
+    "description": "Registro de notas",
+    "type": "project",
+    "require": {
+        "twig/twig": "^3.3"
+    },
+    "authors": [
+        {
+            "name": "Jorge",
+            "email": "jorgeelicer281178@gmail.com"
+        }
+    ]
+}
