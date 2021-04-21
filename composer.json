@@ -3,12 +3,18 @@
     "description": "Registro de notas",
     "type": "project",
     "require": {
-        "twig/twig": "^3.3"
+        "twig/twig": "^3.3",
+        "vlucas/phpdotenv": "^5.3"
     },
     "authors": [
         {
             "name": "Jorge",
             "email": "jorgeelicer281178@gmail.com"
         }
-    ]
+    ],
+    "autoload": {
+        "psr-4": {
+            "Jorge\\": "src/php"
+        }
+    }
 }
