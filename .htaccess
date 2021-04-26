@@ -1,0 +1,22 @@
+Options All -Indexes
+
+RedirectMatch 403 ^/.git/.*$
+RedirectMatch 403 ^/vendor/.*$
+RedirectMatch 403 ^/src/.*$
+
+RewriteEngine On
+
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteCond %{SCRIPT_FILENAME} !-f
+
+RewriteRule ^(\w+)*$ ./index.php?p=$1
+
+<Files .htaccess>
+ Order allow,deny
+ Deny from all
+</Files>
+
+<Files .env>
+    order allow,deny
+    deny from all
+</Files>

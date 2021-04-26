@@ -98,7 +98,7 @@ final class Twig {
      */
     protected function loadExtensions(): void {
         // $this->addExtension(new \Twig\Extra\Intl\IntlExtension());
-        // $this->addExtension(new \Twig\Extension\DebugExtension());
+        $this->addExtension(new \Twig\Extension\DebugExtension());
     }
 
     /**
