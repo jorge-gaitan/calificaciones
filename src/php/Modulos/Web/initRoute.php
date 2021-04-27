@@ -29,7 +29,8 @@ trait initRoute
 
                 $Route
                         ->addRoute($Inicio)
-                        ->addRoute(new WebRoute('jorge', Pages\Jorge::class));
+                        ->addRoute(new WebRoute('jorge', Pages\Jorge::class))
+                        ->addRoute(new WebRoute('carreras', Pages\Carreras::class));
 
                 $this->Route = $Route->init();
                 $this->Route = $Route;
