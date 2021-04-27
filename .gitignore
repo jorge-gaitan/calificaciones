@@ -1,3 +1,5 @@
 /vendor/
+/node_modules/
 /compilation_cache/
 composer.lock
+yarn.lock

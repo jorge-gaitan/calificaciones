@@ -1,0 +1,13 @@
+{
+  "name": "registro-notas",
+  "version": "1.0.0",
+  "description": "Registro de notas",
+  "main": "index.js",
+  "repository": "git@github.com:jorge-gaitan/calificaciones.git",
+  "author": "Jorge <jorgeelicer281178@gmail.com>",
+  "license": "Apache-2",
+  "dependencies": {
+    "bootstrap": "4.6.0",
+    "jquery": "^3.6.0"
+  }
+}

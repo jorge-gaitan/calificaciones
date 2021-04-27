@@ -1,1 +1,44 @@
-<h1>Hola esta pagina esta siendo cargada desde Twig</h1>
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+		<title>Jumbotron Template · Bootstrap v4.6</title>
+
+		<base
+		href="http://localhost/registro-notas/" target="_blank">
+
+		<!-- Bootstrap core CSS -->
+		<link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+		<meta
+		name="theme-color" content="#563d7c">
+
+		<!-- Custom styles for this template -->
+		<link href="./src/css/style.css" rel="stylesheet">
+	</head>
+	<body>
+
+		{% block navbar %}
+			{% include 'bloques/navbar.twig' %}
+		{% endblock %}
+
+
+		<main role="main">
+			{% block contenido %}
+				{% include 'bloques/contenido.twig' %}
+			{% endblock %}
+		</main>
+		{% block footer %}
+			<footer class="container">
+				<p>&copy; Jorge 2021-2021</p>
+			</footer>
+		{% endblock %}
+		<script src="./node_modules/jquery/dist/jquery.min.js"></script>
+		<script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+		{% block scripts %}
+			<script src="./src/js/script.js"></script>
+		{% endblock %}
+	</body>
+</html>

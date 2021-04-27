@@ -11,7 +11,7 @@ final class Inicio extends Page
 
     public function __construct()
     {
-        parent::__construct("Pagina de inicio", 'inicio.twig');
+        parent::__construct("Pagina de inicio", 'base.twig');
     }
 
     public function initVars()
