@@ -1,0 +1,28 @@
+{%  extends "base.twig" %}
+
+{% block contenido %}
+	<div class="container">
+		<h1>Lista de asignaturas</h1>
+		<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">ID_Carrera</th>
+      <th scope="col">Nombre</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+
+   {% for asignatura in listaAsignaturas %}
+    <tr>
+      <th scope="row">{{asignatura.id}}</th>
+      <td>{{asignatura.ID_Carrera}}</td>
+      <td>{{asignatura.nombre}}</td>
+         
+    </tr>
+	{% endfor %}
+  </tbody>
+</table>
+	</div>
+{% endblock %}
