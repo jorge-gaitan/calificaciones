@@ -26,7 +26,11 @@ final class asignatura
 
     public static function getListaasignatura()
     {
-        $sql = "SELECT * FROM asignatura";
+        $sql = "SELECT 
+        asig.*,
+        car.nombre AS nombreCarrera
+        FROM asignatura AS asig
+        INNER JOIN carrera AS car ON asig.id_carrera = car.id";
         $stmt = Database::prepare_fetch_all($sql);
         return $stmt;
     }
