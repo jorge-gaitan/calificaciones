@@ -6,14 +6,12 @@ use Jorge\Modulos\Database;
 
 final class carrera
 {
-    public static function agregarcarrera(string $nombre, string $universidad)
+    public static function agregarcarrera(string $nombre)
     {
-        $sql = "INSERT INTO trimestre (nombre, universidad ) VALUES(:nombre, :universidad)";
+        $sql = "INSERT INTO `carrera` (`nombre`) VALUES (:nombre)";
 
         $stmt = Database::prepare_execute($sql, [
-            "nombre" => $nombre,
-            "universidad" => $universidad
-
+            "nombre" => $nombre
         ]);
         return $stmt;
     }

@@ -16,21 +16,30 @@ final class Carreras extends Page
         parent::__construct("Carreras", "carreras.twig");
     }
 
-    // En algun momento va necesitar iniciar compontenes
-    // esta funcion se llama despues de construir la clase,
     public function setUp()
     {
-        $this->listaCarreras = carrera::getListacarrera();
     }
 
     // Esta funcion se usa para cargar variables en la plantilla
     public function initVars()
     {
+        $this->listaCarreras = carrera::getListacarrera();
         $this->setVar('listaCarreras', $this->listaCarreras);
     }
 
     public function CheckPost()
     {
-        //
+        $agregarCarrera = $this->getPost('agregarCarrera');
+        $borrar = $this->getPostInt('id_borrado');
+        if ($borrar) {
+            carrera::borrarcarreraById($borrar);
+            $this->setVar('borrado', $borrar);
+        }
+
+        if ($agregarCarrera) {
+            $nombreCarrera = $this->getPost('nombreCarrera');
+            carrera::agregarcarrera($nombreCarrera);
+            $this->setVar('nuevaCarrera', true);
+        }
     }
 }

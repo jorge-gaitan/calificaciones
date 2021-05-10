@@ -1,11 +1,26 @@
 {% extends "base.twig" %}
 
+{% macro alerta(texto, tipo = "alert-danger") %}
+    <div class="alert {{ tipo }}" role="alert">
+ 	 {{ texto }}
+	</div>
+{% endmacro %}
+
 {% block contenido %}
 	<div class="container">
 		<h1>Lista de carreras</h1>
-		<table class="table">
+	{% if borrado %}
+		{{ _self.alerta('Se borro correctamente la carrera') }}
+	{% endif %}
+	
+	{% if nuevaCarrera %}
+		{{ _self.alerta('Se agrego la carrera correctamente', 'alert-info') }}
+	{% endif %}
+	
+		<table class="table" id="tablaCarreras">
 			<thead>
 				<tr>
+					<th></th>
 					<th scope="col">ID</th>
 					<th scope="col">Carrera</th>
 				</tr>
@@ -13,11 +28,39 @@
 			<tbody>
 				{% for carrera in listaCarreras %}
 					<tr>
+						<th>
+							<form method="POST" target="_self">
+								<button type="submit" class="btn btn-danger" name="id_borrado" value={{ carrera.id }}>
+									<i class="fas fa-trash-alt"></i>
+								</button>
+							</form>
+						</th>
 						<th scope="row">{{ carrera.id }}</th>
 						<td>{{ carrera.nombre }}</td>
 					</tr>
+					{% else %}
+						{{ _self.alerta('No se encontraron carreras') }}
 				{% endfor %}
 			</tbody>
 		</table>
+		<br>
+		<button type="buttton" class="btn btn-info" id="btnAgregarCarrera">
+			<i class="fas fa-plus"></i> Agregar carrera
+		</button>
+		<br>
+		<form method="POST" target="_self" style="display: none;" id="formCarreras">
+			<div class="form-group">
+    			<label for="nombreCarrera">Nombre de la carrera</label>
+    			<input type="text" autocomplete="off" class="form-control" name="nombreCarrera" placeholder="Escribe un nombre para la carrera">
+  			</div>
+			<button type="submit" class="btn btn-success" name="agregarCarrera" value="true">
+				<i class="fas fa-save"></i> Guardar carrera
+			</button>
+		</form>
 	</div>
+{% endblock %}
+
+{% block scripts %}
+	{{ parent() }}
+	<script src="./src/js/carreras.js"></script>
 {% endblock %}
