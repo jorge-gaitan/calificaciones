@@ -28,7 +28,11 @@ final class estudiantes
 
     public static function getListaestudiantes()
     {
-        $sql = "SELECT * FROM estudiantes";
+        $sql = "SELECT 
+          estude.*,
+          car.nombre AS nombreCarrera
+          FROM estudiantes AS estude
+          INNER JOIN carrera AS car ON estude.id_carrera = car.id            ";
         $stmt = Database::prepare_fetch_all($sql);
         return $stmt;
     }

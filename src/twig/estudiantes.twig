@@ -6,8 +6,8 @@
 		<table class="table">
   <thead>
     <tr>
-      <th scope="col">ID_estudiantes</th>
-      <th scope="col">ID_Carrera</th>
+      <th scope="col">ID</th>
+      <th scope="col">Carrera</th>
       <th scope="col">Nombre</th>
       
     </tr>
@@ -17,7 +17,7 @@
    {% for estudiantes in listaEstudiantes %}
     <tr>
       <th scope="row">{{estudiantes.id_estudiante}}</th>
-      <td>{{estudiantes.id_carrera}}</td>
+      <td>{{estudiantes.nombreCarrera}}</td>
       <td>{{estudiantes.nombre}}</td>
          
     </tr>
