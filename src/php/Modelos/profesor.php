@@ -6,13 +6,12 @@ use Jorge\Modulos\Database;
 
 final class profesor
 {
-    public static function agregarprofesor(string $nombre, string $carrera)
+    public static function agregarprofesor(string $nombre)
     {
-        $sql = "INSERT INTO profesor (nombre, carrera ) VALUES(:nombre, :carrera,)";
+        $sql = "INSERT INTO profesor (nombre) VALUES(:nombre)";
 
         $stmt = Database::prepare_execute($sql, [
-            "nombre" => $nombre,
-            "carrera" => $carrera
+            "nombre" => $nombre  
         ]);
         return $stmt;
     }

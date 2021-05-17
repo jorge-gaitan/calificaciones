@@ -3,6 +3,7 @@
 namespace Jorge\Pages;
 
 use Jorge\Modelos\Asignatura;
+use Jorge\Modelos\carrera;
 use Jorge\Modulos\Page;
 
 final class asignaturas extends  Page
@@ -15,26 +16,35 @@ final class asignaturas extends  Page
         parent::__construct("Asignaturas", "asignaturas.twig");
     }
 
-    // En algun momento va necesitar iniciar compórtense
-    // esta funcion se llama despues de construir la clase,
+
     public function setUp()
     {
-        $this->listaAsignaturas = asignatura::getListaasignatura();
     }
 
     // Esta funcion se usa para cargar variables en la plantilla
     public function initVars()
     {
+        $this->listaCarreras = carrera::getListacarrera();
+        $this->listaAsignaturas = asignatura::getListaasignatura();
         $this->setVar('listaAsignaturas', $this->listaAsignaturas);
+        $this->setVar('listaCarreras', $this->listaCarreras);
     }
 
     public function CheckPost()
     {
-        //
+        $agregarAsignatura = $this->getPost('agregarAsignatura');
+        $borrar = $this->getPostInt('id_borrado');
+
+        if ($borrar) {
+            asignatura::borrarasignaturaById($borrar);
+            $this->setVar('borrado', $borrar);
+        }
+
+        if ($agregarAsignatura) {
+            $nombreAsignatura = $this->getPost('nombreAsignatura');
+            $id_carrera = $this->getPostInt('carrera');
+            asignatura::agregarasignatura($nombreAsignatura, $id_carrera);
+            $this->setVar('nuevaasignatura', true);
+        }
     }
-
-
-
-
 }
-

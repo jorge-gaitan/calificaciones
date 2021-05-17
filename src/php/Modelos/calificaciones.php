@@ -20,4 +20,24 @@ final class calificaciones
         $stmt = Database::prepare_fetch_all($sql);
         return $stmt;
     }
+
+    public static function agregarCalificacion(int $id_asignatura, int $id_estudiante, int $id_profesor, int $trimestre, int $nota)
+    {
+        $sql = "INSERT INTO `calificaciones` (`id_asignatura`, `id_estudiante`, `id_profesor`, `trimestre`, `nota`) VALUES (:id_asignatura, :id_estudiante, :id_profesor, :trimestre, :nota)";
+        $stmt = Database::prepare_execute($sql, [
+            "id_asignatura" => $id_asignatura,
+            "id_estudiante" => $id_estudiante,
+            "id_profesor" => $id_profesor,
+            "trimestre" => $trimestre,
+            "nota" => $nota
+        ]);
+        return $stmt;
+    }
+
+    public static function borrarrCalificacionById(int $id)
+    {
+        $sql = "DELETE FROM calificaciones WHERE id = ?";
+        $stmt = Database::prepare_execute($sql, [$id]);
+        return $stmt;
+    }
 }

@@ -5,6 +5,7 @@ namespace Jorge\Pages;
 
 use Jorge\Modelos\estudiante;
 use Jorge\Modelos\estudiantes as ModelosEstudiantes;
+use Jorge\Modelos\carrera;
 use Jorge\Modulos\Page;
 
 final class estudiantes extends  Page
@@ -21,18 +22,40 @@ final class estudiantes extends  Page
     // esta funcion se llama despues de construir la clase,
     public function setUp()
     {
-        $this->listaEstudiantes = ModelosEstudiantes::getListaestudiantes();
+        
     }
 
     // Esta funcion se usa para cargar variables en la plantilla
     public function initVars()
     {
+        $this->listaCarreras = carrera::getListacarrera();
+        $this->listaEstudiantes = ModelosEstudiantes::getListaestudiantes();
         $this->setVar('listaEstudiantes', $this->listaEstudiantes);
+        $this->setVar('listaCarreras', $this->listaCarreras);
     }
 
     public function CheckPost()
     {
-        //
+        
+        $AgregarEstudiante = $this->getPost('agregarestudiantes');
+        $borrar = $this->getPostInt('id_borrado');
+
+        if ($borrar) {
+            ModelosEstudiantes::borrarestudiantesById($borrar);
+            $this->setVar('borrado', $borrar);
+        }
+
+        if ($AgregarEstudiante) {
+            $nombreEstudiante = $this->getPost('nombreEstudiante');
+            $id_carrera = $this->getPostInt('carrera');
+            ModelosEstudiantes::agregarestudiantes($nombreEstudiante, $id_carrera);
+            $this->setVar('nuevaestudiantes', true);
+        }
+
+
+
+
+
     }
 
 

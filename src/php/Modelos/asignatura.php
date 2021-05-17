@@ -6,13 +6,13 @@ use Jorge\Modulos\Database;
 
 final class asignatura
 {
-    public static function agregarasignatura(string $nombre, string $universidad)
+    public static function agregarasignatura(string $nombre, int $id_carrera)
     {
-        $sql = "INSERT INTO asignatura (nombre, carrera ) VALUES(:nombre, :carrera,)";
+        $sql = "INSERT INTO `asignatura` (`id_carrera`, `nombre`) VALUES (:id_carrera, :nombre)";
 
         $stmt = Database::prepare_execute($sql, [
             "nombre" => $nombre,
-            "carrera" => $carrera
+            "id_carrera" => $id_carrera
         ]);
         return $stmt;
     }

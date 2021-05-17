@@ -1,24 +1,70 @@
 {% extends "base.twig" %}
 
+{% macro alerta(texto, tipo = "alert-danger") %}
+	<div class="alert {{ tipo }}" role="alert">
+		{{ texto }}
+	</div>
+{% endmacro %}
+
 {% block contenido %}
 	<div class="container">
-		<h1>Lista de profesores</h1>
-        <table class="table">
+		<h1>Lista de Docentes</h1>
+		{% if borrado %}
+			{{ _self.alerta('Se borro correctamente el Nombre del Docentes') }}
+		{% endif %}
+
+		{% if nuevaProfesores %}
+			{{ _self.alerta('Se agrego el nombre correctamente', 'alert-info') }}
+		{% endif %}
+
+		<table class="table" id="tablaProfesores">
 			<thead>
 				<tr>
+					<th></th>
 					<th scope="col">ID</th>
-					<th scope="col">Nombre</th>
+					<th scope="col">nombre</th>
 				</tr>
 			</thead>
 			<tbody>
 				{% for profesores in listaProfesores %}
 					<tr>
+						<th>
+							<form method="POST" target="_self">
+								<button type="submit" class="btn btn-danger" name="id_borrado" value={{ profesores.id }}>
+									<i class="fas fa-trash-alt"></i>
+								</button>
+							</form>
+						</th>
 						<th scope="row">{{ profesores.id }}</th>
 						<td>{{ profesores.nombre }}</td>
 					</tr>
+				{% else %}
+					{{ _self.alerta('no se encontro lista de  Nombres de Docentes') }}
 				{% endfor %}
 			</tbody>
 		</table>
+		<br>
+		<button type="buttton" class="btn btn-info" id="btnAgregarProfesores">
+			<i class="fas fa-plus"></i>
+			Agregar Nombre del Docente
+		</button>
+		<br>
+		<form method="POST" target="_self" style="display: none;" id="formProfesores">
+			<div class="form-grup">
+				<label for="nombreProfesores">nombre del Docente</label>
+				<input type="text" class="form-control" name="nombreProfesores" placeholder="Escribe  el   nombre del Docente">
+			</div>
 
+
+			<button type="submit" class="btn btn-success" name="agregarProfesores" value="true">
+				<i class="fas fa-save"></i>
+				Guardar el Nombre del Docente
+			</button>
+		</form>
 	</div>
+{% endblock %}
+
+{% block scripts %}
+	{{ parent() }}
+	<script src="./src/js/profesores.js"></script>
 {% endblock %}

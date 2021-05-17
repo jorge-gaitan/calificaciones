@@ -6,15 +6,13 @@ use Jorge\Modulos\Database;
 
 final class estudiantes
 {
-    public static function agregarestudiantes(string $id_estudiante, string $id_carrera, string $nombre)
+    public static function agregarestudiantes( string $nombre, int $id_carrera)
     {
-        $sql = "INSERT INTO universidad (id_estudiantes,id_carrera,nombre) VALUES(:id_estudiantes, :id_carrera, :nombre)";
+        $sql = "INSERT INTO `estudiantes` ( `id_carrera`, `nombre`) VALUES (:id_carrera, :nombre)";
 
         $stmt = Database::prepare_execute($sql, [
-            "id_estudiante" => $id_estudiante,
-            "id_carrera" => $id_carrera,
             "nombre" => $nombre,
-            
+            "id_carrera" => $id_carrera
         ]);
         return $stmt;
     }

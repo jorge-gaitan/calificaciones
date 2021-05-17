@@ -1,27 +1,79 @@
-{%  extends "base.twig" %}
+{% extends "base.twig" %}
+
+{% macro alerta(texto, tipo = "alert-danger") %}
+	<div class="alert {{ tipo }}" role="alert">
+		{{ texto }}
+	</div>
+{% endmacro %}
 
 {% block contenido %}
 	<div class="container">
-		<h1>Lista de asignaturas</h1>
-		<table class="table">
+		<h1>Lista de Asignaturas</h1>
+		{% if borrado %}
+			{{ _self.alerta('Se borro correctamente la asignatura') }}
+		{% endif %}
+
+		{% if nuevaasignatura %}
+			{{ _self.alerta('Se agrego la asignatura correctamente', 'alert-info') }}
+		{% endif %}
+
+		<table class="table" id="tablaasignaturas">
 			<thead>
 				<tr>
+					<th></th>
 					<th scope="col">ID</th>
 					<th scope="col">Clase</th>
-					<th scope="col">Nombre</th>
+					<th scope="col">Carrera</th>
 				</tr>
 			</thead>
 			<tbody>
-
 				{% for asignatura in listaAsignaturas %}
 					<tr>
-						<th scope="row">{{asignatura.id}}</th>
-						<td>{{asignatura.nombreCarrera}}</td>
-						<td>{{asignatura.nombre}}</td>
+						<th>
+							<form method="POST" target="_self">
+								<button type="submit" class="btn btn-danger" name="id_borrado" value={{ asignatura.id }}>
+									<i class="fas fa-trash-alt"></i>
+								</button>
+							</form>
+						</th>
+						<th scope="row">{{ asignatura.id }}</th>
+						<td>{{ asignatura.nombreCarrera}}</td>
+						<td>{{ asignatura.nombre}}</td>
 
 					</tr>
+				{% else %}
+					{{ _self.alerta('No se encontraron aignaturas') }}
 				{% endfor %}
 			</tbody>
 		</table>
+		<br>
+		<button type="buttton" class="btn btn-info" id="btnAgregarAsignatura">
+			<i class="fas fa-plus"></i>
+			Agregar Asignatura
+		</button>
+		<br>
+		<form method="POST" target="_self" style="display: none;" id="formAsignatura">
+			<div class="form-group">
+				<label for="carrera">Carrera</label>
+				<select class="form-control" name="carrera">
+					{% for carrera in listaCarreras %}
+						<option value="{{ carrera.id }}">{{ carrera.nombre }}</option>
+					{% endfor %}
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="nombreAsignatura">Nombre de la Asignatura</label>
+				<input type="text" autocomplete="off" class="form-control" name="nombreAsignatura" placeholder="Escribe un nombre para la asigntura">
+			</div>
+			<button type="submit" class="btn btn-success" name="agregarAsignatura" value="true">
+				<i class="fas fa-save"></i>
+				Guardar Asignatura
+			</button>
+		</form>
 	</div>
+{% endblock %}
+
+{% block scripts %}
+	{{ parent() }}
+	<script src="./src/js/asignatura.js"></script>
 {% endblock %}
