@@ -37,7 +37,7 @@ final class estudiantes
 
     public static function borrarestudiantesById(int $id)
     {
-        $sql = "DELETE FROM estudiantes WHERE id = ?";
+        $sql = "DELETE FROM estudiantes WHERE id_estudiante = ?";
         $stmt = Database::prepare_execute($sql, [$id]);
         return $stmt;
     }

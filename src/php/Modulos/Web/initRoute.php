@@ -33,7 +33,8 @@ trait initRoute
                         ->addRoute(new WebRoute('carreras', Pages\Carreras::class))
                         ->addRoute(new WebRoute('asignaturas', Pages\asignaturas::class))
                         ->addRoute(new WebRoute('profesores', Pages\profesores::class))
-                        ->addRoute(new WebRoute('estudiantes', Pages\estudiantes::class));
+                        ->addRoute(new WebRoute('estudiantes', Pages\estudiantes::class))
+                        ->addRoute(new WebRoute('calificaciones', Pages\Calificaciones::class));
 
                 $this->Route = $Route->init();
                 $this->Route = $Route;

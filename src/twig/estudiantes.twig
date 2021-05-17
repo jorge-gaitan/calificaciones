@@ -31,15 +31,14 @@
 					<tr>
 						<th>
 							<form method="POST" target="_self">
-								<button type="submit" class="btn btn-danger" name="id_borrado" value={{ estudiantes.id }}>
+								<button type="submit" class="btn btn-danger" name="id_borrado" value={{ estudiantes.id_estudiante }}>
 									<i class="fas fa-trash-alt"></i>
 								</button>
 							</form>
 						</th>
-						<th scope="row">{{ estudiantes.id }}</th>
+						<th scope="row">{{ estudiantes.id_estudiante }}</th>
 						<td>{{ estudiantes.nombreCarrera}}</td>
 						<td>{{ estudiantes.nombre}}</td>
-
 					</tr>
 				{% else %}
 					{{ _self.alerta('No se encontro el nombre el estudiante') }}
@@ -47,7 +46,7 @@
 			</tbody>
 		</table>
 		<br>
-		<button type="buttton" class="btn btn-info" id="btnagregarestudiantes">
+		<button type="buttton" class="btn btn-info" id="btnAgregarEstudiante">
 			<i class="fas fa-plus"></i>
 			Agregar nombre del Estudiante
 		</button>
@@ -75,5 +74,5 @@
 
 {% block scripts %}
 	{{ parent() }}
-	<script src="./src/js/estudiantes.js"></script>
+	<script src="./src/js/estudiante.js"></script>
 {% endblock %}

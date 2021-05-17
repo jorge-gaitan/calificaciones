@@ -1,0 +1,31 @@
+{% extends "base.twig" %}
+
+{% block contenido %}
+	<div class="container">
+		<h1>Lista De Calificaciones</h1>
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">ID</th>
+					<th scope="col">Asignatura</th>
+					<th scope="col">estudiante</th>
+					<th scope="col">Docente</th>
+					<th scope="col">Trimestre</th>
+					<th scope="col">Nota</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for calificacion in listaCalificaciones %}
+					<tr>
+						<th scope="row">{{ calificacion.id }}</th>
+						<td>{{ calificacion.nombreAsignatura }}</td>
+						<td>{{ calificacion.nombreEstudiante }}</td>
+						<td>{{ calificacion.nombreprofesor }}</td>
+						<td>{{ calificacion.trimestre }}</td>
+						<td>{{ calificacion.nota }}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+{% endblock %}
