@@ -1,11 +1,26 @@
 {% extends "base.twig" %}
 
+{% macro alerta(texto, tipo = "alert-danger") %}
+	<div class="alert {{ tipo }}" role="alert">
+		{{ texto }}
+	</div>
+{% endmacro %}
+
 {% block contenido %}
 	<div class="container">
 		<h1>Lista De Calificaciones</h1>
-		<table class="table">
+		{% if borrado %}
+			{{ _self.alerta('Se borro correctamente la nota') }}
+		{% endif %}
+
+		{% if nuevacalificaciones %}
+			{{ _self.alerta('Se agrego  correctamente la nota', 'alert-info') }}
+		{% endif %}
+
+		<table class="table" id="tablacalificaciones">
 			<thead>
 				<tr>
+					<th></th>
 					<th scope="col">ID</th>
 					<th scope="col">Asignatura</th>
 					<th scope="col">estudiante</th>
@@ -17,6 +32,13 @@
 			<tbody>
 				{% for calificacion in listaCalificaciones %}
 					<tr>
+						<th>
+							<form method="POST" target="_self">
+								<button type="submit" class="btn btn-danger" name="id_borrado" value={{ calificacion.id }}>
+									<i class="fas fa-trash-alt"></i>
+								</button>
+							</form>
+						</th>
 						<th scope="row">{{ calificacion.id }}</th>
 						<td>{{ calificacion.nombreAsignatura }}</td>
 						<td>{{ calificacion.nombreEstudiante }}</td>
@@ -24,8 +46,59 @@
 						<td>{{ calificacion.trimestre }}</td>
 						<td>{{ calificacion.nota }}</td>
 					</tr>
+				{% else %}
+					{{ _self.alerta('No se encontro la nota') }}
 				{% endfor %}
 			</tbody>
 		</table>
+		<br>
+		<button type="buttton" class="btn btn-info" id="btnAgregarCalificacion">
+			<i class="fas fa-plus"></i>
+			Agregar la Nota
+		</button>
+		<br>
+		<form method="POST" target="_self" style="display: none;" id="formcalificacion">
+			<div class="form-group">
+				<label for="calificacion">Asignatura</label>
+				<select class="form-control" name="asignatura">
+					{% for asignatura in asignaturas %}
+						<option value="{{ asignatura.id }}">{{ asignatura.nombre }}</option>
+					{% endfor %}
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="calificacion">Estudiante</label>
+				<select class="form-control" name="estudiante">
+					{% for estudiante in estudiantes %}
+						<option value="{{ estudiante.id_estudiante }}">{{ estudiante.nombre }}</option>
+					{% endfor %}
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="calificacion">Profesor</label>
+				<select class="form-control" name="profesor">
+					{% for profesor in profesores %}
+						<option value="{{ profesor.id }}">{{ profesor.nombre }}</option>
+					{% endfor %}
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="nombreCalificacion">Trimestre</label>
+				<input type="number" autocomplete="off" class="form-control" name="trimestre" placeholder="Escribe el trimestre">
+			</div>
+			<div class="form-group">
+				<label for="nombreCalificacion">Nota</label>
+				<input type="number" autocomplete="off" class="form-control" name="nota" placeholder="Escribe calificacion del estudiante">
+			</div>
+			<button type="submit" class="btn btn-success" name="AgregarCalificacion" value="true">
+				<i class="fas fa-save"></i>
+				Guardar la Nota del Estudiante
+			</button>
+		</form>
 	</div>
+{% endblock %}
+
+{% block scripts %}
+	{{ parent() }}
+	<script src="./src/js/calificacion.js"></script>
 {% endblock %}

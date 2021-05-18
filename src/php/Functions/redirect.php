@@ -1,6 +1,6 @@
 <?php
 
-namespace Bulk\Modules\Util\Functions;
+namespace Jorge\Functions;
 
 trait redirect {
 

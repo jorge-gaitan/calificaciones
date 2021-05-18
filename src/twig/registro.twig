@@ -1,0 +1,28 @@
+{% extends "base.twig" %}
+
+{% macro alerta(texto, tipo = "alert-danger") %}
+	<div class="alert {{ tipo }}" role="alert">
+		{{ texto }}
+	</div>
+{% endmacro %}
+
+{% block contenido %}
+	<div class="container">
+		{% if registro %}
+			{{ _self.alerta('Se registro correctamente el usuario', 'alert-info') }}
+		{% endif %}
+		<h1>Registrar usuario</h1>
+		<form method="POST" target="_self">
+			<div class="form-group">
+				<label for="usuario">Nombre de usaurio</label>
+				<input type="text" class="form-control" id="usuario" name="username" aria-describedby="usuariohelp">
+				<small id="usuariohelp" class="form-text text-muted">Nombre de usuario que se registrara en el sistema</small>
+			</div>
+			<div class="form-group">
+				<label for="password">Contraseña</label>
+				<input type="password" name="password" class="form-control">
+			</div>
+			<button type="submit" class="btn btn-primary" name="registrarUsuario">Registrar</button>
+		</form>
+	</div>
+{% endblock %}

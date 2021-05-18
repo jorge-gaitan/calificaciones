@@ -16,6 +16,7 @@ final class Funciones
         Functions\same_week,
         Functions\same_day,
         Functions\parseDir,
+        Functions\redirect,
         Functions\set_array_value,
         Functions\get_array_value,
         Functions\checkArray,

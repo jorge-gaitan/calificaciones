@@ -34,7 +34,7 @@ final class calificaciones
         return $stmt;
     }
 
-    public static function borrarrCalificacionById(int $id)
+    public static function borrarCalificacionById(int $id)
     {
         $sql = "DELETE FROM calificaciones WHERE id = ?";
         $stmt = Database::prepare_execute($sql, [$id]);
