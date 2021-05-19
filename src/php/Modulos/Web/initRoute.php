@@ -32,6 +32,7 @@ trait initRoute
                         ->addRoute(new WebRoute('jorge', Pages\Jorge::class))
                         ->addRoute(new WebRoute('registro', Pages\Registro::class))
                         ->addRoute(new WebRoute('login', Pages\Login::class))
+                        ->addRoute(new WebRoute('logout', Pages\Logout::class))
                         ->addRoute(new WebRoute('carreras', Pages\Carreras::class))
                         ->addRoute(new WebRoute('asignaturas', Pages\asignaturas::class))
                         ->addRoute(new WebRoute('profesores', Pages\profesores::class))

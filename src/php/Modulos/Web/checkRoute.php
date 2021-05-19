@@ -19,7 +19,15 @@ trait checkRoute
         $Route = $this->getRoute();
         $UserSession = Web::$loged;
 
-        if (!$UserSession) {
+        $Url = filter_input(INPUT_GET, 'p');
+        $Whitelist = [
+            'login',
+            'registro'
+        ];
+
+        if (in_array($Url, $Whitelist)) {
+            $Route->init();
+        } else if (!$UserSession) {
             $Route
                 ->getRoute('login')
                 ->init(FALSE);

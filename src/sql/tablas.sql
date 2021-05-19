@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `asignatura` (
   PRIMARY KEY (`id`),
   KEY `FK_asignatura_carrera` (`id_carrera`),
   CONSTRAINT `FK_asignatura_carrera` FOREIGN KEY (`id_carrera`) REFERENCES `carrera` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 -- La exportación de datos fue deseleccionada.
 
@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `calificaciones` (
   CONSTRAINT `FK_calificaciones_asignatura` FOREIGN KEY (`id_asignatura`) REFERENCES `asignatura` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_calificaciones_estudiantes` FOREIGN KEY (`id_estudiante`) REFERENCES `estudiantes` (`id_estudiante`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_calificaciones_profesor` FOREIGN KEY (`id_profesor`) REFERENCES `profesor` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin1;
 
 -- La exportación de datos fue deseleccionada.
 
@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `carrera` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=latin1 COMMENT='esta es la tabla de  carreras para pagina de calificaciones';
+) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=latin1 COMMENT='esta es la tabla de  carreras para pagina de calificaciones';
 
 -- La exportación de datos fue deseleccionada.
 
@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS `estudiantes` (
   PRIMARY KEY (`id_estudiante`),
   KEY `FK_estudiantes_carrera` (`id_carrera`),
   CONSTRAINT `FK_estudiantes_carrera` FOREIGN KEY (`id_carrera`) REFERENCES `carrera` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=latin1;
 
 -- La exportación de datos fue deseleccionada.
 
@@ -73,7 +73,30 @@ CREATE TABLE IF NOT EXISTS `profesor` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+
+-- La exportación de datos fue deseleccionada.
+
+-- Volcando estructura para tabla calificaciones.sesiones_usuarios
+CREATE TABLE IF NOT EXISTS `sesiones_usuarios` (
+  `id_sesion` int(11) NOT NULL AUTO_INCREMENT,
+  `id_usuario` int(11) NOT NULL,
+  `token` varchar(250) NOT NULL,
+  PRIMARY KEY (`id_sesion`),
+  KEY `FK_sesiones_usuarios_usuarios` (`id_usuario`),
+  CONSTRAINT `FK_sesiones_usuarios_usuarios` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+
+-- La exportación de datos fue deseleccionada.
+
+-- Volcando estructura para tabla calificaciones.usuarios
+CREATE TABLE IF NOT EXISTS `usuarios` (
+  `id_usuario` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre_usuario` varchar(50) NOT NULL,
+  `password` varchar(250) NOT NULL,
+  PRIMARY KEY (`id_usuario`),
+  UNIQUE KEY `nombre_usuario` (`nombre_usuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- La exportación de datos fue deseleccionada.
 

@@ -40,6 +40,15 @@ final class Usuarios
         return $stmt;
     }
 
+    public static function borrarSesion(int $id_usuario)
+    {
+        $sql = "DELETE FROM sesiones_usuarios WHERE id_usuario = ?";
+        $stmt = Database::prepare_execute($sql, [
+            $id_usuario
+        ]);
+        return $stmt;
+    }
+
     public static function getUsuarioByToken(string $token)
     {
         $sql = "SELECT id_usuario FROM sesiones_usuarios WHERE token = ?";
