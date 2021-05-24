@@ -9,5 +9,19 @@ $(document).ready(function () {
 
     $('#btnAgregarCarrera').click(function () {
         mostrarFormulario();
+        $('button[name="agregarCarrera"]').val('true');
+    });
+
+    // Mostrar el formulario y cargar los datos de la tabla
+    $('.btnEditar').click(function () {
+        mostrarFormulario();
+        let data = $(this).data();
+        let nombreCarrera = data.nombrecarrera,
+            idCarrera = data.idcarrera;
+
+        $('input[name="nombreCarrera"]').val(nombreCarrera);
+        $('button[name="agregarCarrera"]').val(idCarrera);
+
+        console.log(data);
     });
 });

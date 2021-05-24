@@ -37,18 +37,7 @@ final class carrera
         return $stmt;
     }
 
-    public static function updateNombreUniversidad(int $id, string $nombre, string $universidad)
-    {
-        $sql = "UPDATE carrera SET nombre = :nombre, universidad = :universidad WHERE id = :id";
-        $stmt = Database::prepare_execute($sql, [
-            "nombre" => $nombre,
-            "universidad" => $universidad,
-            "id" => $id
-        ]);
-        return $stmt;
-    }
-
-    public static function updateNombre(int $id, string $nombre)
+    public static function updateCarrera(int $id, string $nombre)
     {
         $sql = "UPDATE carrera SET nombre = :nombre WHERE id = :id";
         $stmt = Database::prepare_execute($sql, [
@@ -58,14 +47,4 @@ final class carrera
         return $stmt;
     }
 
-
-    public static function updateUniversidad(int $id, string $universidad)
-    {
-        $sql = "UPDATE carrera SET universidad = :universidad WHERE id = :id";
-        $stmt = Database::prepare_execute($sql, [
-            "universidad" => $universidad,
-            "id" => $id
-        ]);
-        return $stmt;
-    }
 }

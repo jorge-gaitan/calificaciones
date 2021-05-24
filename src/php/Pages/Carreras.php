@@ -29,17 +29,24 @@ final class Carreras extends Page
 
     public function CheckPost()
     {
-        $agregarCarrera = $this->getPost('agregarCarrera');
+        $agregarCarrera = ($this->getPostInt('agregarCarrera') ?: $this->getPost('agregarCarrera'));
         $borrar = $this->getPostInt('id_borrado');
         if ($borrar) {
             carrera::borrarcarreraById($borrar);
             $this->setVar('borrado', $borrar);
         }
 
-        if ($agregarCarrera) {
+        // Entra al bloque de borrado
+        if ($agregarCarrera === 'true') {
             $nombreCarrera = $this->getPost('nombreCarrera');
             carrera::agregarcarrera($nombreCarrera);
             $this->setVar('nuevaCarrera', true);
+        } else if (is_int($agregarCarrera)) {
+            // Entra al bloque de edición
+            $id_carrera = $agregarCarrera;
+            $nombreCarrera = $this->getPost('nombreCarrera');
+            carrera::updateCarrera($id_carrera, $nombreCarrera);
+            $this->setVar('update', true);
         }
     }
 }
