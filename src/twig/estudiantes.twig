@@ -17,6 +17,15 @@
 			{{ _self.alerta('Se agrego el nombre del estudiante correctamente', 'alert-info') }}
 		{% endif %}
 
+		
+		<div class="container mb-5 text-left">
+			<button type="buttton" class="btn btn-info" id="btnAgregarEstudiante">
+			<i class="fas fa-plus"></i>
+			Agregar nombre del Estudiante
+		</button>
+		</div>
+		
+		
 		<table class="table" id="tablaestudiantes">
 			<thead>
 				<tr>
@@ -34,6 +43,11 @@
 								<button type="submit" class="btn btn-danger" name="id_borrado" value={{ estudiantes.id_estudiante }}>
 									<i class="fas fa-trash-alt"></i>
 								</button>
+
+                                 <button type="submit" class="btn btn-warning" name="id_editar" value={{ asignatura.id }}>
+									<i class="fas fa-edit"></i>
+								</button>
+
 							</form>
 						</th>
 						<th scope="row">{{ estudiantes.id_estudiante }}</th>
@@ -46,11 +60,7 @@
 			</tbody>
 		</table>
 		<br>
-		<button type="buttton" class="btn btn-info" id="btnAgregarEstudiante">
-			<i class="fas fa-plus"></i>
-			Agregar nombre del Estudiante
-		</button>
-		<br>
+		
 		<form method="POST" target="_self" style="display: none;" id="formEstudiantes">
 			<div class="form-group">
 				<label for="carrera">Carrera</label>

@@ -37,6 +37,12 @@
 								<button type="submit" class="btn btn-danger" name="id_borrado" value={{ calificacion.id }}>
 									<i class="fas fa-trash-alt"></i>
 								</button>
+
+                             <button type="submit" class="btn btn-warning" name="id_editar" value={{ asignatura.id }}>
+									<i class="fas fa-edit"></i>
+								</button>
+
+
 							</form>
 						</th>
 						<th scope="row">{{ calificacion.id }}</th>
@@ -101,4 +107,7 @@
 {% block scripts %}
 	{{ parent() }}
 	<script src="./src/js/calificacion.js"></script>
+	<script>
+	
+	</script>
 {% endblock %}

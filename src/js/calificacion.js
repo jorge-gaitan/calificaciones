@@ -5,9 +5,23 @@ $(document).ready(function () {
 
         contenedorTabla.toggle();
         contenedorForm.toggle();
+
+        
+
     }
 
     $('#btnAgregarCalificacion').click(function () {
         mostrarFormulario();
     });
+
+    //Crear el datatables
+    $(document).ready( function () {
+        let table = $('#tablacalificaciones').DataTable( {
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        } );        
+    } );
+    
 });
