@@ -33,7 +33,7 @@ final class Carreras extends Page
         $borrar = $this->getPostInt('id_borrado');
         if ($borrar) {
             carrera::borrarcarreraById($borrar);
-            $this->setVar('borrado', $borrar);
+            $this->0('borrado', $borrar);
         }
 
         if ($agregarCarrera) {
