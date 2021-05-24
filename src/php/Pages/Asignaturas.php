@@ -32,7 +32,7 @@ final class asignaturas extends  Page
 
     public function CheckPost()
     {
-        $agregarAsignatura = $this->getPost('agregarAsignatura');
+        $agregarAsignatura = ($this->getPostInt('agregarAsignatura') ?: $this->getPost('agregarAsignatura'));
         $borrar = $this->getPostInt('id_borrado');
 
         if ($borrar) {
@@ -40,11 +40,18 @@ final class asignaturas extends  Page
             $this->setVar('borrado', $borrar);
         }
 
-        if ($agregarAsignatura) {
+        if ($agregarAsignatura === 'true') {
             $nombreAsignatura = $this->getPost('nombreAsignatura');
             $id_carrera = $this->getPostInt('carrera');
             asignatura::agregarasignatura($nombreAsignatura, $id_carrera);
             $this->setVar('nuevaasignatura', true);
+        } else if (is_int($agregarAsignatura)) {
+            $id_asignatura = $agregarAsignatura;
+            $nombreAsignatura = $this->getPost('nombreAsignatura');
+            $id_carrera = $this->getPostInt('carrera');
+
+            asignatura::updateAsignatura($id_asignatura, $nombreAsignatura, $id_carrera);
+            $this->setVar('update', true);
         }
     }
 }

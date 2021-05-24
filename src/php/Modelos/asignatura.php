@@ -42,11 +42,12 @@ final class asignatura
         return $stmt;
     }
 
-    public static function updateNombreasignatura(int $id, string $nombre)
+    public static function updateAsignatura(int $id, string $nombre, int $id_carrera)
     {
-        $sql = "UPDATE asignatura SET nombre = :nombre WHERE id = :id";
+        $sql = "UPDATE asignatura SET nombre = :nombre, id_carrera = :id_carrera WHERE id = :id";
         $stmt = Database::prepare_execute($sql, [
             "nombre" => $nombre,
+            "id_carrera" => $id_carrera,
             "id" => $id
         ]);
     }

@@ -13,6 +13,10 @@
 			{{ _self.alerta('Se borro correctamente la asignatura') }}
 		{% endif %}
 
+		{% if update %}
+			{{ _self.alerta('Se actualizo correctamente la asignatura', 'alert-info') }}
+		{% endif %}
+
 		{% if nuevaasignatura %}
 			{{ _self.alerta('Se agrego la asignatura correctamente', 'alert-info') }}
 		{% endif %}
@@ -22,7 +26,7 @@
 				<tr>
 					<th></th>
 					<th scope="col">ID</th>
-					<th scope="col">Clase</th>
+					<th scope="col">Asignatura</th>
 					<th scope="col">Carrera</th>
 				</tr>
 			</thead>
@@ -35,15 +39,15 @@
 									<i class="fas fa-trash-alt"></i>
 								</button>
 
-                            <button type="submit" class="btn btn-warning" name="id_editar" value={{ asignatura.id }}>
+								<button type="button" class="btn btn-warning btnEditar" data-idasignatura="{{ asignatura.id }}" data-nombreasignatura="{{ asignatura.nombre }}" data-idcarrera="{{ asignatura.id_carrera }}">
 									<i class="fas fa-edit"></i>
 								</button>
 
 							</form>
 						</th>
 						<th scope="row">{{ asignatura.id }}</th>
-						<td>{{ asignatura.nombreCarrera}}</td>
-						<td>{{ asignatura.nombre}}</td>
+						<td>{{ asignatura.nombre }}</td>
+						<td>{{ asignatura.nombreCarrera }}</td>
 
 					</tr>
 				{% else %}
