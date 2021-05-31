@@ -13,6 +13,12 @@
 			{{ _self.alerta('Se borro correctamente el Nombre del Docentes') }}
 		{% endif %}
 
+        {% if update %}
+			{{ _self.alerta('Se actualizo correctamente el Nombre del Docentes', 'alert-info') }}
+		{% endif %}
+
+
+
 		{% if nuevaProfesores %}
 			{{ _self.alerta('Se agrego el nombre correctamente', 'alert-info') }}
 		{% endif %}
@@ -34,7 +40,8 @@
 									<i class="fas fa-trash-alt"></i>
 								</button>
 
-                            <button type="submit" class="btn btn-warning" name="id_editar" value={{  profesores.id }}>
+                            <button type="button" class="btn btn-warning btnEditar"  data-idprofesores="{{profesores.id}}" 
+							data-nombreProfesores="{{profesores.nombre}}">
 									<i class="fas fa-edit"></i>
 								</button>
 

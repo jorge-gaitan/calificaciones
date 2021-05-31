@@ -30,17 +30,24 @@ final class profesores  extends   Page
 
     public function CheckPost()
     {
-        $agregarProfesores = $this->getPost('agregarProfesores');
+        $agregarProfesores =($this->getPostInt('agregarProfesores') ?: $this->getPost('agregarProfesores'));
         $borrar = $this->getPostInt('id_borrado');
         if ($borrar) {
             profesor::borrarprofesorById($borrar);
             $this->setVar('borrado', $borrar);
         }
 
-        if ($agregarProfesores) {
+        if ($agregarProfesores === 'true') {
             $nombreProfesor = $this->getPost('nombreProfesores');
             Profesor::agregarprofesor($nombreProfesor);
             $this->setVar('nuevaProfesores', true);
+        } else if ($this->getPostInt('agregarProfesores')){
+            // entrar al bloque de edicion
+            $idprofesor = $agregarProfesores;
+            $nombreProfesor = $this->getPost('nombreProfesores');
+            Profesor::updateNombreprofesor($idprofesor,$nombreProfesor);
+            $this->setVar('update', true);
+
         }
     }
 }
