@@ -22,7 +22,6 @@ final class estudiantes extends  Page
     // esta funcion se llama despues de construir la clase,
     public function setUp()
     {
-        
     }
 
     // Esta funcion se usa para cargar variables en la plantilla
@@ -36,8 +35,8 @@ final class estudiantes extends  Page
 
     public function CheckPost()
     {
-        
-        $AgregarEstudiante = $this->getPost('agregarestudiantes');
+
+        $AgregarEstudiante = ($this->getPostInt('agregarestudiantes') ?: $this->getPost('agregarestudiantes'));
         $borrar = $this->getPostInt('id_borrado');
 
         if ($borrar) {
@@ -45,21 +44,18 @@ final class estudiantes extends  Page
             $this->setVar('borrado', $borrar);
         }
 
-        if ($AgregarEstudiante) {
+        if ($AgregarEstudiante === 'true') {
             $nombreEstudiante = $this->getPost('nombreEstudiante');
             $id_carrera = $this->getPostInt('carrera');
             ModelosEstudiantes::agregarestudiantes($nombreEstudiante, $id_carrera);
             $this->setVar('nuevaestudiantes', true);
+        } else  if (is_int($AgregarEstudiante)) {
+            $id_estudiante = $AgregarEstudiante;
+            $nombreEstudiante = $this->getPost('nombreEstudiante');
+            $id_carrera = $this->getPostInt('carrera');
+
+            ModelosEstudiantes::updateestudiantes($id_estudiante, $nombreEstudiante, $id_carrera);
+            $this->setVar('update', true);
         }
-
-
-
-
-
     }
-
-
-
-
 }
-

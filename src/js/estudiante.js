@@ -12,13 +12,33 @@ $(document).ready(function () {
     });
 
     //Crear el datatables
-    $(document).ready( function () {
-        let table = $('#tablaestudiantes').DataTable( {
+    $(document).ready(function () {
+        let table = $('#tablaestudiantes').DataTable({
             dom: 'Bfrtip',
             buttons: [
                 'copy', 'csv', 'excel', 'pdf', 'print'
             ]
-        } );        
-    } );
-    
+        });
+    });
+
+    $('.btnEditar').click(function () {
+        mostrarFormulario();
+        let data = $(this).data();
+
+        let nombreEstudiante = data.nombreestudiante,
+            idEstudiante = data.idestudiante,
+            idCarrera = data.idcarrera;
+
+        console.log(data);
+
+        $('input[name="nombreEstudiante"]').val(nombreEstudiante);
+        $('select[name="carrera"]').val(parseInt(idCarrera));
+        $('button[name="agregarestudiantes"]').val(idEstudiante);
+
+    });
+
+
+
+
+
 });

@@ -20,7 +20,7 @@ $(document).ready(function () {
             idCarrera = data.idcarrera;
 
         $('input[name="nombreCarrera"]').val(nombreCarrera);
-        $('button[name="agregarCarrera"]').val(idCarrera);
+        $('button[name="agregarestudiantes"]').val(idCarrera);
 
         console.log(data);
     });

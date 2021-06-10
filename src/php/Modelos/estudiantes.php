@@ -6,7 +6,7 @@ use Jorge\Modulos\Database;
 
 final class estudiantes
 {
-    public static function agregarestudiantes( string $nombre, int $id_carrera)
+    public static function agregarestudiantes(string $nombre, int $id_carrera)
     {
         $sql = "INSERT INTO `estudiantes` ( `id_carrera`, `nombre`) VALUES (:id_carrera, :nombre)";
 
@@ -42,11 +42,12 @@ final class estudiantes
         return $stmt;
     }
 
-    public static function updateNombreestudiantes(int $id, string $nombre)
+    public static function updateestudiantes(int $id,  string $nombre, int $id_carrera)
     {
-        $sql = "UPDATE estudiantes SET nombre = :nombre WHERE id = :id";
+        $sql = "UPDATE estudiantes SET nombre = :nombre, id_carrera = :id_carrera WHERE id_estudiante = :id";
         $stmt = Database::prepare_execute($sql, [
             "nombre" => $nombre,
+            "id_carrera" => $id_carrera,
             "id" => $id
         ]);
     }

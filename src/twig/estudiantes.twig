@@ -13,19 +13,23 @@
 			{{ _self.alerta('Se borro correctamente el nombre del estudiante') }}
 		{% endif %}
 
+		{% if update %}
+			{{ _self.alerta('Se actualizo correctamente el nombre del estudiante','alert-info') }}
+		{% endif %}
+
 		{% if nuevaestudiantes %}
 			{{ _self.alerta('Se agrego el nombre del estudiante correctamente', 'alert-info') }}
 		{% endif %}
 
-		
+
 		<div class="container mb-5 text-left">
 			<button type="buttton" class="btn btn-info" id="btnAgregarEstudiante">
-			<i class="fas fa-plus"></i>
-			Agregar nombre del Estudiante
-		</button>
+				<i class="fas fa-plus"></i>
+				Agregar nombre del Estudiante
+			</button>
 		</div>
-		
-		
+
+
 		<table class="table" id="tablaestudiantes">
 			<thead>
 				<tr>
@@ -44,7 +48,7 @@
 									<i class="fas fa-trash-alt"></i>
 								</button>
 
-                                 <button type="submit" class="btn btn-warning" name="id_editar" value={{ asignatura.id }}>
+								<button type="button" class="btn btn-warning btnEditar" data-nombreestudiante="{{ estudiantes.nombre }}" data-idcarrera="{{estudiantes.id_carrera}}"  data-idestudiante="{{ estudiantes.id_estudiante }}">
 									<i class="fas fa-edit"></i>
 								</button>
 
@@ -60,7 +64,7 @@
 			</tbody>
 		</table>
 		<br>
-		
+
 		<form method="POST" target="_self" style="display: none;" id="formEstudiantes">
 			<div class="form-group">
 				<label for="carrera">Carrera</label>
